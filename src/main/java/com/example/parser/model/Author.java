@@ -2,14 +2,14 @@ package com.example.parser.model;
 
 
 public class Author {
-    public String firstName;
-    public String lastName;
+    private String firstName;
+    private String lastName;
 
     public String getFullName(){
         return (firstName + " " +lastName);
     }
 
-    public void setFullName(String firstName, String lastName) {
+    public Author(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }

@@ -7,36 +7,41 @@ public class NameParser implements INameParser {
 
     @Override
     public Author parseFullName(String name) {
-        Author newAuthor = new Author();
+        String lastName;
+        String firstName;
 
-        if (name == null) {
+        if (name.isBlank()) {
             throw new RuntimeException ("No name to parse was provided.");
         }
 
-        var splitName = name.split("\\s+");
+        //Handle cases where the last name listed first
+        var commaSplit = name.split(",");
 
-        //Handle special case where last name is first in the provided string
-        if (splitName[0].contains(",")){
-            newAuthor.lastName = splitName[0].replace(",", "");
-            newAuthor.firstName = splitName[1];
-
-            if (splitName.length > 2) {
-                for (int i = 2; i < splitName.length; i++) {
-                    newAuthor.firstName += " " + splitName[i];
-                }
-            }
+        if (commaSplit.length > 2){
+            throw new RuntimeException ("More than one comma was found in the provided name.");
         }
-        else {
-            newAuthor.lastName = splitName[splitName.length - 1];
-            newAuthor.firstName = splitName[0];
+        else if (commaSplit.length == 2) {
+            lastName = commaSplit[0];
+            firstName = commaSplit[1];
 
-            if (splitName.length > 2){
-                for (int i = 1; i < splitName.length -1; i++) {
-                    newAuthor.firstName += " " + splitName[i];
-                }
-            }
+            return new Author(firstName, lastName);
         }
 
-        return newAuthor;
+        //Handle other cases
+        var spaceSplit = name.split("\\s+");
+
+        if (spaceSplit.length == 1){
+            throw new RuntimeException ("An author needs a first and a last name.");
+        }
+
+        lastName = spaceSplit[spaceSplit.length - 1];
+        firstName = spaceSplit[0];
+
+        for (int i = 1; i < spaceSplit.length -1; i++) {
+            String.join(firstName, " ", spaceSplit[i]);
+        }
+
+
+        return new Author(firstName, lastName);
     }
 }
