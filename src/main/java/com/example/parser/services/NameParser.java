@@ -6,11 +6,11 @@ import com.example.parser.model.Author;
 public class NameParser implements INameParser {
 
     @Override
-    public String parseFullName(String name) {
+    public Author parseFullName(String name) {
         Author newAuthor = new Author();
 
         if (name == null) {
-            return ("No name to parse was provided.");
+            throw new RuntimeException ("No name to parse was provided.");
         }
 
         var splitName = name.split("\\s+");
@@ -37,6 +37,6 @@ public class NameParser implements INameParser {
             }
         }
 
-        return "First Name: "+ newAuthor.firstName + "\nLast Name: " + newAuthor.lastName;
+        return newAuthor;
     }
 }

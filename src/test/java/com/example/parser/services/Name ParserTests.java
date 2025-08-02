@@ -20,11 +20,13 @@ class NameParserTests {
 		var result2 = nameParser.parseFullName("Kristensen, P. H.");
 
 		//To check manually:
-		//System.out.println(result1);
-		//System.out.println(result2);
+		//System.out.println("First Name: "+ result1.firstName + "\nLast Name: " + result1.lastName);
+		//System.out.println("First Name: "+ result2.firstName + "\nLast Name: " + result2.lastName);
 
-		assertThat(result1).isEqualTo("First Name: John\nLast Name: Doe");
-		assertThat(result2).isEqualTo("First Name: P. H.\nLast Name: Kristensen");
+		assertThat(result1.firstName).isEqualTo("John");
+		assertThat(result1.lastName).isEqualTo("Doe");
+		assertThat(result2.firstName).isEqualTo("P. H.");
+		assertThat(result2.lastName).isEqualTo("Kristensen");
 	}
 
 	@Test
@@ -35,14 +37,18 @@ class NameParserTests {
 		var result4 = nameParser.parseFullName("Peter Hans Kristensen");
 
 		//To check manually:
-		//System.out.println(result1);
-		//System.out.println(result2);
-		//System.out.println(result3);
-		//System.out.println(result4);
+		//System.out.println("First Name: "+ result1.firstName + "\nLast Name: " + result1.lastName);
+		//System.out.println("First Name: "+ result2.firstName + "\nLast Name: " + result2.lastName);
+		//System.out.println("First Name: "+ result3.firstName + "\nLast Name: " + result3.lastName);
+		//System.out.println("First Name: "+ result4.firstName + "\nLast Name: " + result4.lastName);
 
-		assertThat(result1).isEqualTo("First Name: John\nLast Name: Doe");
-		assertThat(result2).isEqualTo("First Name: Hans-Christian\nLast Name: Jensen");
-		assertThat(result3).isEqualTo("First Name: P. H.\nLast Name: Kristensen");
-		assertThat(result4).isEqualTo("First Name: Peter Hans\nLast Name: Kristensen");
+		assertThat(result1.firstName).isEqualTo("John");
+		assertThat(result1.lastName).isEqualTo("Doe");
+		assertThat(result2.firstName).isEqualTo("Hans-Christian");
+		assertThat(result2.lastName).isEqualTo("Jensen");
+		assertThat(result3.firstName).isEqualTo("P. H.");
+		assertThat(result3.lastName).isEqualTo("Kristensen");
+		assertThat(result4.firstName).isEqualTo("Peter Hans");
+		assertThat(result4.lastName).isEqualTo("Kristensen");
 	}
 }

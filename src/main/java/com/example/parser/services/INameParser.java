@@ -1,6 +1,8 @@
 package com.example.parser.services;
 
+import com.example.parser.model.Author;
+
 public interface INameParser {
-    String parseFullName(String name);
+    Author parseFullName(String name);
 
 }
