@@ -7,8 +7,8 @@ public class NameParser implements INameParser {
 
     @Override
     public Author parseFullName(String name) {
-        String lastName;
-        String firstName;
+        String lastName = null;
+        String firstName = null;
 
         if (name.isBlank()) {
             throw new IllegalArgumentException ("No name to parse was provided.");
@@ -22,7 +22,7 @@ public class NameParser implements INameParser {
         }
         else if (commaSplit.length == 2) {
             lastName = commaSplit[0].replace(",","");
-            firstName = commaSplit[1];
+            firstName = commaSplit[1].replaceFirst(" ", "");
 
             return new Author(firstName, lastName);
         }
@@ -38,7 +38,7 @@ public class NameParser implements INameParser {
         firstName = spaceSplit[0];
 
         for (int i = 1; i < spaceSplit.length -1; i++) {
-            String.join(firstName, " ", spaceSplit[i]);
+            firstName = String.join(" ", firstName, spaceSplit[i].trim());
         }
 
 
