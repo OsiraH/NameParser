@@ -11,7 +11,7 @@ public class NameParser implements INameParser {
         String firstName;
 
         if (name.isBlank()) {
-            throw new RuntimeException ("No name to parse was provided.");
+            throw new IllegalArgumentException ("No name to parse was provided.");
         }
 
         //Handle cases where the last name listed first
@@ -21,7 +21,7 @@ public class NameParser implements INameParser {
             throw new RuntimeException ("More than one comma was found in the provided name.");
         }
         else if (commaSplit.length == 2) {
-            lastName = commaSplit[0];
+            lastName = commaSplit[0].replace(",","");
             firstName = commaSplit[1];
 
             return new Author(firstName, lastName);
